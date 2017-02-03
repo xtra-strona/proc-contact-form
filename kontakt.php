@@ -95,30 +95,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ( ($name !='') && ($email !='') && ($subject !='') && ($message!='') ) {
 
             if( ($emailErr =='') ){
+				$i = _x('Imie:','Formularz Kontaktowy');
+				$e = _x('Email:','Formularz Kontaktowy');
+				$t = _x('Temat:','Formularz Kontaktowy');
+				$w = _x('Wiadomość:','Formularz Kontaktowy');
+				
                         $mail = wireMail();
                         $mail->to("$mail_to")->from("$mail_from"); // all calls can be chained
                         $mail->subject("$mail_subject");
-                        $mail->body("<b>Imie:</b> $name <br> <b>Email:</b> $email <br> <b>Temat:</b> $subject</br> <b>Wiadomość:</b> $message");
-                        $mail->bodyHTML("<html><body><b>Imie:</b> $name <br> <b>Email:</b> $email <br> <b>Temat:</b> $subject<br> <b>Wiadomość:</b> $message</body></html>");
+                        $mail->body("<b>$i</b> $name <br> <b>$e</b> $email <br> <b>$t</b> $subject</br> <b>$w</b> $message");
+                        $mail->bodyHTML("<html><body><b>$i</b> $name <br> <b>$e</b> $email <br> <b>$t</b> $subject<br> <b>$w</b> $message</body></html>");
                         $mail->send();
 
                         $client = wireMail();
                         $client->to("$email")->from("$mail_from"); // all calls can be chained
                         $client->subject("$client_subject");
-                        $client->body("<b>Imie:</b> $name <br> <b>Email:</b> $email <br> <b>Temat:</b> $subject</br> <b>Wiadomość:</b> $message");
-                        $client->bodyHTML("<html><body><b>Imie:</b> $name <br> <b>Email:</b> $email <br> <b>Temat:</b> $subject<br> <b>Wiadomość:</b> $message</body></html>");
+                        $client->body("<b>$i</b> $name <br> <b>$e</b> $email <br> <b>$t</b> $subject</br> <b>$w</b> $message");
+                        $client->bodyHTML("<html><body><b>$i</b> $name <br> <b>$e</b> $email <br> <b>$t</b> $subject<br> <b>$w</b> $message</body></html>");
                         $client->send();
 
-
-                   $nagl = "<div class='form-nagl alert alert-success' role='alert'><ul><li><h2>Twoja Wiadomość Została wysłana</h2></li><li><b>Imie:</b> $name</li><li><b>E-Mail:</b> $email<li><b>Temat:</b> $subject</li><li><b>Wiadomość:</b> $message</ul></div>";
+                   $succes_txt = _x('Twoja Wiadomość Została wysłana','Formularz Kontaktowy');
+                   $nagl = "<div class='form-nagl alert alert-success' role='alert'><ul><li><h2>$succes_txt</h2></li><li><b>Imie:</b> $name</li><li><b>E-Mail:</b> $email<li><b>Temat:</b> $subject</li><li><b>Wiadomość:</b> $message</ul></div>";
 
             }else {
-                $err = "<div class='alert alert-danger' role='alert'><h3>Nieprawidłowy Format Email</h3></div>";
+				$error_txt = _x('Nieprawidłowy Format Email','Formularz Kontaktowy');
+                $err = "<div class='alert alert-danger' role='alert'><h3>$error_txt</h3></div>";
             }
 
                 } else {
-
-                    $nagl = "<div class='alert alert-success' role='alert'><h3>Wypełnij Formularz</h3></div>";
+                    $must_txt = _x('Wypełnij Formularz','Formularz Kontaktowy');
+                    $nagl = "<div class='alert alert-success' role='alert'><h3>$must_txt</h3></div>";
                 }
 }?>
 
@@ -170,7 +176,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <input class="btn btn-box" type="submit" name="submit" value="<?= _x('Wyślij','Contact Form');?>">
+                        <input class="btn btn-box" type="submit" name="submit" value="<?= _x('Wyślij','Formularz Kontaktowy');?>">
                     </div>
                 </div>
             </form>
