@@ -6,9 +6,12 @@
   mail_from => Od Kogo Wysłałeś Wiadomość => Pole E-Mail
   mail_subject => Pole Opisu O czym jest Wiadomość => Pole Text lub Textarea
 
-    text_1 => Pole Tekstowe Nagłowka => Pole Text
+  client_subject => Wiadomość Powrotna Dla Twojego Klienta => Pole Textarea
+
+    contact_heading => Pole Tekstowe Nagłowka => Pole Text
     body => Po prostu pole info => Defoltowe Pole Textarea ( body )
-    ph_number => Numer Telefonu => Pole Text
+    ph_number => Numer Telefonu => Pole Text, Float, Integr
+    google_map => Mapa Google => Pole Textarea
 */
 
 // PODEPNIJ SKRYPTY W STOPCE STRONY ORAZ NAJLEPIEJ ŻEBYŚ UŻYWAŁ BOOTSTRAPA
@@ -28,12 +31,14 @@ $(function () {
 </script>
 */
 
-$mail_to = $mail_from = $mail_subject = $_mrs = $_mrk = "";
+$mail_to = $mail_from = $mail_subject = $client_subject = $_mrs = $_mrk = "";
 
 
 $mail_to = $page->mail_to;
 $mail_from = $page->mail_from;
 $mail_subject = $page->mail_subject;
+
+$client_subject = $page->client_subject;
 
 $nagl = $err = '';
 
@@ -97,6 +102,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $mail->bodyHTML("<html><body><b>Imie:</b> $name <br> <b>Email:</b> $email <br> <b>Temat:</b> $subject<br> <b>Wiadomość:</b> $message</body></html>");
                         $mail->send();
 
+                        $client = wireMail();
+                        $client->to("$email")->from("$mail_from"); // all calls can be chained
+                        $client->subject("$client_subject");
+                        $client->body("<b>Imie:</b> $name <br> <b>Email:</b> $email <br> <b>Temat:</b> $subject</br> <b>Wiadomość:</b> $message");
+                        $client->bodyHTML("<html><body><b>Imie:</b> $name <br> <b>Email:</b> $email <br> <b>Temat:</b> $subject<br> <b>Wiadomość:</b> $message</body></html>");
+                        $client->send();
+
+
                    $nagl = "<div class='form-nagl alert alert-success' role='alert'><ul><li><h2>Twoja Wiadomość Została wysłana</h2></li><li><b>Imie:</b> $name</li><li><b>E-Mail:</b> $email<li><b>Temat:</b> $subject</li><li><b>Wiadomość:</b> $message</ul></div>";
 
             }else {
@@ -118,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-contact">
-                            <input type="text" name="name" value="<?php echo $name;?>" data-validation="length alphanumeric" data-validation-allowing=" . Ż ż ą ć ę ł ń ó ś ź Ó Ł" data-validation-length="min3" maxlength="30">
+                            <input type="text" name="name" value="<?php echo $name;?>" data-validation="length alphanumeric" data-validation-allowing=" ' . , Ż ż ą ć ę ł ń ó ś ź Ó Ł" data-validation-length="min3" maxlength="30">
                             <?php if($nameErr !=''){ ?>
                               <span class="error">* <?php echo $nameErr;?></span>
                             <?php }else{ ?>
@@ -138,7 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="col-md-12">
                         <div class="input-contact">
-                            <input name="subject" value="<?php echo $subject;?>" type="text" data-validation="length alphanumeric" data-validation-length="min5" data-validation-allowing=" . Ż ż ą ć ę ł ń ó ś ź Ó Ł" maxlength="100">
+                            <input name="subject" value="<?php echo $subject;?>" type="text" data-validation="length alphanumeric" data-validation-length="min5" data-validation-allowing=" ' . , Ż ż ą ć ę ł ń ó ś ź Ó Ł" maxlength="100">
                             <?php if($subjectErr !=''){ ?>
                                 <span class="error">* <?php echo $subjectErr;?></span>
                                <?php }else{ ?>
@@ -148,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="col-md-12">
                         <div class="textarea-contact">
-                            <textarea name="message" value="<?php echo $message;?>" data-validation="length alphanumeric" data-validation-length="min10" data-validation-allowing=" . Ż ż ą ć ę ł ń ó ś ź Ó Ł" maxlength="900"></textarea>
+                            <textarea name="message" value="<?php echo $message;?>" data-validation="length alphanumeric" data-validation-length="min10" data-validation-allowing=" ' . , Ż ż ą ć ę ł ń ó ś ź Ó Ł" maxlength="900"></textarea>
                                 <?php if($messageErr !=''){ ?>
                                   <span class="error">* <?php echo $messageErr;?></span>
                                 <?php }else{ ?>
@@ -164,8 +177,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <div class="col-md-6 c-info">
-          <?php if ($page->text_1): ?>
-                      <h2 class='text-center'><?=$page->text_1;?></h2>
+          <?php if ($page->contact_heading): ?>
+                      <h2 class='contact-heading'><?=$page->contact_heading;?></h2>
           <?php endif; ?>
               <?php if ($page->body): ?>
                         <?=$page->body;?>
@@ -180,8 +193,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
 
+        <div class="flex-map">
+          <?php if ($page->google_map): ?>
+              <?=$page->google_map;?>
+          <?php endif; ?>
+        </div>
+
     </div>
-</div>
 
     <!-- end main-container -->
     <?php include("./_foot.php"); ?>

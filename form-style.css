@@ -1,5 +1,15 @@
   /* contact page
   ==================================================*/
+  .flex-map {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .flex-map iframe {
+    padding-top: 50px;
+  }
+
 .form-error {
   background-color: #b61e14;
   padding: .3rem 1rem;
@@ -14,8 +24,10 @@
 .box-primary-nav-trigger span {
     color: aliceblue !important;
 }
-.pt-10 {
-padding-top: 2px;
+
+.c-info .contact-heading {
+  color: #ff4800;
+  text-align: center;
 }
 
 .c-info p {
