@@ -1,0 +1,114 @@
+{
+    "kontakt": {
+        "id": 45,
+        "name": "kontakt",
+        "fieldgroups_id": "kontakt",
+        "flags": 0,
+        "cache_time": 0,
+        "useRoles": 0,
+        "noInherit": 0,
+        "childrenTemplatesID": 0,
+        "sortfield": "",
+        "noChildren": "",
+        "noParents": "",
+        "childTemplates": [],
+        "parentTemplates": [],
+        "allowPageNum": 0,
+        "allowChangeUser": 0,
+        "redirectLogin": 0,
+        "urlSegments": 0,
+        "https": 0,
+        "slashUrls": 1,
+        "slashPageNum": 0,
+        "slashUrlSegments": 0,
+        "altFilename": "",
+        "guestSearchable": 0,
+        "pageClass": "",
+        "childNameFormat": "",
+        "pageLabelField": "fa-envelope-square title",
+        "noGlobal": 0,
+        "noMove": 0,
+        "noTrash": 0,
+        "noSettings": 0,
+        "noChangeTemplate": 0,
+        "noShortcut": 0,
+        "noUnpublish": 0,
+        "noLang": 0,
+        "compile": 3,
+        "nameContentTab": 0,
+        "noCacheGetVars": "",
+        "noCachePostVars": "",
+        "useCacheForUsers": 0,
+        "cacheExpire": 0,
+        "cacheExpirePages": [],
+        "cacheExpireSelector": "",
+        "label": "",
+        "tags": "",
+        "titleNames": 0,
+        "noPrependTemplateFile": 0,
+        "noAppendTemplateFile": 0,
+        "prependFile": "",
+        "appendFile": "",
+        "tabContent": "",
+        "tabChildren": "",
+        "nameLabel": "",
+        "contentType": "",
+        "errorAction": 0,
+        "ns": "ProcessWire",
+        "_exportMode": true,
+        "fieldgroupFields": [
+            "title",
+            "headline",
+            "summary",
+            "mail_to",
+            "mail_from",
+            "mail_subject",
+            "client_subject",
+            "client_message",
+            "contact_heading",
+            "ph_number",
+            "body",
+            "google_map"
+        ],
+        "fieldgroupContexts": {
+            "title": {
+                "collapsed": "5",
+                "columnWidth": 20
+            },
+            "headline": {
+                "columnWidth": 30,
+                "description": "Use this instead of the field above if more text is needed for the page than for the navigation."
+            },
+            "summary": {
+                "columnWidth": 50
+            },
+            "mail_to": {
+                "columnWidth": 30
+            },
+            "mail_from": {
+                "columnWidth": 30
+            },
+            "mail_subject": {
+                "columnWidth": 40
+            },
+            "client_subject": {
+                "columnWidth": 40
+            },
+            "client_message": {
+                "columnWidth": 60,
+                "rows": 3
+            },
+            "contact_heading": {
+                "columnWidth": 15
+            },
+            "ph_number": {
+                "columnWidth": 15
+            },
+            "body": {
+                "columnWidth": 70,
+                "rows": 5
+            },
+            "google_map": []
+        }
+    }
+}
