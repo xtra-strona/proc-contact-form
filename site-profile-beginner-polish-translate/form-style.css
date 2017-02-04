@@ -59,6 +59,57 @@
   .cont-form .error {color: #FF0000;}
 
 
+.c-info .contact-heading {
+  color: #ff4800;
+  text-align: center;
+}
+
+.c-info h2 {
+  color: #ff7200;
+}
+
+.c-info h3 {
+  border-top: none;
+  color: #11d6bc;
+}
+
+.c-info h4 {
+  border-top: none;
+  color: #0086fb;
+}
+
+.c-info h5, h6 {
+  border-top: none;
+  color: aliceblue;
+}
+
+.c-info p {
+  color: #e3c108;
+}
+.c-info a {
+  color: #00F7B4;
+  border-top: 1px solid #fb5d0a;
+  border-bottom: 1px solid #fb5d0a;
+  padding-bottom: .2rem;
+  padding-top: .2rem;
+  transition: all .3s ease-in-out;
+}
+
+.c-info a:hover {
+  color: red;
+  border-top: 3px solid #10d4f7;
+  border-bottom: 3px solid #10d4f7;
+  padding-bottom: .4rem;
+  padding-top: .4rem;
+}
+
+.c-info .phone {
+  color: #7bc60f;
+}
+.c-info .e-mail {
+  color: #fea100;
+}
+
   /*GOOGLE MAP*/
   .flex-map {
     display: flex;
@@ -84,21 +135,7 @@
     color: aliceblue !important;
 }
 
-.c-info .contact-heading {
-  color: #ff4800;
-  text-align: center;
-}
 
-.c-info p {
-  color: #e3c108;
-}
-
-.c-info .phone {
-  color: #7bc60f;
-}
-.c-info .e-mail {
-  color: #fea100;
-}
 
 .cont-form .input-contact {
     border: 1px solid #0f615c;
