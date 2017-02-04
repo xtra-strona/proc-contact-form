@@ -1,14 +1,16 @@
 <?php namespace ProcessWire;
-//Wyeksportuj POLA ORAZ TEMPLATE lub
+//Export fields and templates in files fields-export.txt, template-export.txt
 
-// DODAJ NASTĘPUJĄCE POLA
+// OR
+
+// ADD THE FOLLOWING FIELDS
 /*
-  mail_to   => Do Kogo Ma iść Wiadomość => Pole E-Mail
-  mail_from => Od Kogo Wysłałeś Wiadomość => Pole E-Mail
-  mail_subject => Pole Opisu O czym jest Wiadomość => Pole Text lub Textarea
+  mail_to   => Field E-Mail
+  mail_from => Field E-Mail
+  mail_subject => Field Text or Textarea
 
-  client_subject => Nagłwek Wiadomości Powrotnej Dla Twojego Klienta => Pole Textarea
-  client_message =>  Kontent Wiadomości Powrotnej Dla Twojego Klienta => Pole Textarea (CKEDITOR)
+  client_subject => Field Textarea
+  client_message => Field Textarea (CKEDITOR)
 
     contact_heading => Pole Tekstowe Nagłowka => Pole Text
     body => Po prostu pole info => Defoltowe Pole Textarea ( body )
@@ -16,8 +18,7 @@
     google_map => Mapa Google => Pole Textarea
 */
 
-// PODEPNIJ SKRYPTY W STOPCE STRONY ORAZ NAJLEPIEJ ŻEBYŚ UŻYWAŁ BOOTSTRAPA
-
+// Join styles and scripts
 /*
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -30,7 +31,7 @@
 //VALIDATION
 $(function () {
       $.validate({
-        lang: 'pl'
+        lang: 'en'
       });
 })
 
@@ -46,6 +47,7 @@ $(function () {
 </script>
 
 */
+
 $content = ''; // RESET CONTENT
 $mail_to = $mail_from = $mail_subject = $client_subject = $client_mesage = $_mrs = $_mrk = "";
 
@@ -66,33 +68,33 @@ $name = $email = $subject = $message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if (empty($_POST["name"])) {
-    $nameErr = "Imie Jest Wymagane";
+    $nameErr = "Name is required";
   } else {
     $name = test_input($_POST["name"]);
     // check if name only contains letters and whitespace
     if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-      $nameErr = "Jedynie Litery oraz puste przestrzenie";
+      $nameErr = "Only letters and white space allowed";
     }
   }
 
   if (empty($_POST["email"])) {
-    $emailErr = "Email Jest Wymagany";
+    $emailErr = "Email is required";
   } else {
     $email = test_input($_POST["email"]);
     // check if e-mail address is well-formed
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $emailErr = "Nieprawidłowy Format Email";
+      $emailErr = "Invalid email format";
     }
   }
 
   if (empty($_POST["subject"])) {
-    $subjectErr = "Temat Jest Wymagany";
+    $subjectErr = "Subject is required";
   } else {
     $subject = test_input($_POST["subject"]);
   }
 
     if (empty($_POST["message"])) {
-    $messageErr = "Wiadomość Jest Wymagana";
+    $messageErr = "Message is required";
   } else {
     $message = test_input($_POST["message"]);
   }
@@ -112,10 +114,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ( ($name !='') && ($email !='') && ($subject !='') && ($message!='') ) {
 
             if( ($emailErr =='') ){
-				$i = _x('Imie:','Formularz Kontaktowy');
-				$e = _x('Email:','Formularz Kontaktowy');
-				$t = _x('Temat:','Formularz Kontaktowy');
-				$w = _x('Wiadomość:','Formularz Kontaktowy');
+				$i = _x('Name:','Contact Form');
+				$e = _x('E-mail:','Contact Form');
+				$t = _x('Subject:','Contact Form');
+				$w = _x('Message:','Contact Form');
 
                         $mail = wireMail();
                         $mail->to("$mail_to")->from("$mail_from"); // all calls can be chained
@@ -131,25 +133,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $client->bodyHTML("<html><body> $client_mesage <b>$i</b> $name <br> <b>$e</b> $email <br> <b>$t</b> $subject<br> <b>$w</b> $message</body></html>");
                         $client->send();
 
-                    $succes_txt = _x('Twoja Wiadomość Została wysłana','Formularz Kontaktowy');
-                    $nagl = "<div class='form-nagl alert alert-success' role='alert'><ul><li><h2>$succes_txt</h2></li><li><b>$i</b> $name</li><li><b>$e</b> $email<li><b>$t</b> $subject</li><li><b>$w</b> $message</ul></div>";
+                   $succes_txt = _x('Your message has been sent','Contact Form');
+                   $nagl = "<div class='form-nagl alert alert-success' role='alert'><ul><li><h2>$succes_txt</h2></li><li><b>$i</b> $name</li><li><b>$e</b> $email<li><b>$t</b> $subject</li><li><b>$w</b> $message</ul></div>";
 
             }else {
-				$error_txt = _x('Nieprawidłowy Format Email','Formularz Kontaktowy');
+				$error_txt = _x('Invalid email format','Contact Form');
                 $err = "<div class='alert alert-danger' role='alert'><h3>$error_txt</h3></div>";
             }
 
                 } else {
-                    $must_txt = _x('Wypełnij Formularz','Formularz Kontaktowy');
+                    $must_txt = _x('Fill in the form','Contact Form');
                     $nagl = "<div class='alert alert-success' role='alert'><h3>$must_txt</h3></div>";
                 }
 }?>
 <?php
-$im = _x('Imie','Formularz Kontaktowy');
-$em = _x('E-Mail','Formularz Kontaktowy');
-$te = _x('Temat','Formularz Kontaktowy');
-$wi = _x('Wiadomość','Formularz Kontaktowy');
-$w = _x('Wyślij','Formularz Kontaktowy');
+$im = _x('Name','Contact Form');
+$em = _x('E-Mail','Contact Form');
+$te = _x('Subject','Contact Form');
+$wi = _x('Message','Contact Form');
+$w = _x('Submit','Contact Form');
 
      $content .= $nagl;
     $content .= "<h1>$err</h1>";
