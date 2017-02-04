@@ -21,30 +21,36 @@
 // Join styles and scripts
 /*
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="<?php echo $config->urls->templates?>form-style.css" rel="stylesheet">
+	<?php 
+	   // JS SCRIPTS AND STYLE CSS WILL ONLY LOADED ON THE CONTACT PAGE
+	          if ($page->template->name == 'contact'): ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+           <link href="<?php echo $config->urls->templates?>form-style.css" rel="stylesheet">
 
-<script type="text/javascript">
-//VALIDATION
-$(function () {
-      $.validate({
-        lang: 'en'
-      });
-})
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+           <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 
-// input
- $(".input-contact input, .textarea-contact textarea").focus(function () {
-     $(this).next("span").addClass("active");
- });
- $(".input-contact input, .textarea-contact textarea").blur(function () {
-     if ($(this).val() === "") {
-         $(this).next("span").removeClass("active");
-     }
-});
-</script>
+           <script type="text/javascript">
+           //VALIDATION
+           $(function () {
+                 $.validate({
+                   lang: 'en'
+                 });
+           })
+
+           // input
+            $(".input-contact input, .textarea-contact textarea").focus(function () {
+                $(this).next("span").addClass("active");
+            });
+            $(".input-contact input, .textarea-contact textarea").blur(function () {
+                if ($(this).val() === "") {
+                    $(this).next("span").removeClass("active");
+                }
+           });
+           </script>
+
+  <?php endif; ?>
 
 */
 

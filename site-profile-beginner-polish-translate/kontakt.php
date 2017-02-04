@@ -17,34 +17,40 @@
     google_map => Mapa Google => Pole Textarea
 */
 
-// PODEPNIJ SKRYPTY W STOPCE STRONY ORAZ NAJLEPIEJ ŻEBYŚ UŻYWAŁ BOOTSTRAPA
+// PODEPNIJ SKRYPTY W STOPCE STRONY
 
 /*
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="<?php echo $config->urls->templates?>form-style.css" rel="stylesheet">
+	<?php 
+	    // SKRYPTY JS ORAZ STYLE CSS BĘDĄ ŁADOWANE TYLKO NA STRONIE KONTAKTOWEJ
+	       if ($page->template->name == 'kontakt'): ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+           <link href="<?php echo $config->urls->templates?>form-style.css" rel="stylesheet">
 
-<script type="text/javascript">
-//VALIDATION
-$(function () {
-      $.validate({
-        lang: 'pl'
-      });
-})
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+           <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 
-// input
- $(".input-contact input, .textarea-contact textarea").focus(function () {
-     $(this).next("span").addClass("active");
- });
- $(".input-contact input, .textarea-contact textarea").blur(function () {
-     if ($(this).val() === "") {
-         $(this).next("span").removeClass("active");
-     }
-});
-</script>
+           <script type="text/javascript">
+           //VALIDATION
+           $(function () {
+                 $.validate({
+                   lang: 'pl'
+                 });
+           })
+
+           // input
+            $(".input-contact input, .textarea-contact textarea").focus(function () {
+                $(this).next("span").addClass("active");
+            });
+            $(".input-contact input, .textarea-contact textarea").blur(function () {
+                if ($(this).val() === "") {
+                    $(this).next("span").removeClass("active");
+                }
+           });
+           </script>
+
+  <?php endif; ?>
 
 */
 

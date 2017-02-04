@@ -5,7 +5,7 @@
            // OR
 
            // ADD THE FOLLOWING FIELDS
-           /*
+/*
              mail_to   => Field E-Mail
              mail_from => Field E-Mail
              mail_subject => Field Text or Textarea
@@ -20,7 +20,11 @@
            */
 
            // Join styles and scripts
-           /*
+/*
+
+   	<?php 
+	    // JS SCRIPTS AND STYLE CSS WILL ONLY LOADED ON THE CONTACT PAGE
+	         if ($page->template->name == 'contact'): ?>
 
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
            <link href="<?php echo $config->urls->templates?>form-style.css" rel="stylesheet">
@@ -46,6 +50,8 @@
                 }
            });
            </script>
+
+  <?php endif; ?>
 
            */
 
